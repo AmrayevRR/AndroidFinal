@@ -38,7 +38,6 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
         initUI(view)
@@ -60,7 +59,6 @@ class SecondFragment : Fragment() {
 
     private fun fetchStats() {
         val slug = args.slug
-//        Toast.makeText(requireContext(), slug, Toast.LENGTH_SHORT).show()
 
         apiService.getStats(slug).enqueue(object : Callback<ArrayList<Stat>> {
             override fun onFailure(call: Call<ArrayList<Stat>>, t: Throwable) {
@@ -70,9 +68,6 @@ class SecondFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<Stat>>, response: Response<ArrayList<Stat>>) {
                 val stat = response.body()?.last()
                 Log.d("Response", stat.toString())
-//                articleListAdapter.update(response.body()?.articles!!)
-
-                Toast.makeText(requireContext(), stat.toString(), Toast.LENGTH_SHORT).show()
 
                 countryTextView.text = stat!!.Country
                 confirmedDataTextView.text = stat!!.Confirmed.toString()
